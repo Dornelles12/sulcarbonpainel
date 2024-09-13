@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternador de Planilhas</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="sheet-frame"></iframe>
+
+    <script>
+        const urls = [
+            'https://docs.google.com/spreadsheets/d/1OXErRfCdn8H-SRdAsEgbqWx0Fim8eKRO/edit?gid=756893415#gid=756893415',
+            'https://docs.google.com/spreadsheets/d/1yPw3SbBuJamwtzEifVMJSHt4Xpdiftpk/edit?gid=208151360#gid=208151360'
+        ];
+        let currentIndex = 0;
+
+        function switchSheets() {
+            const iframe = document.getElementById('sheet-frame');
+            iframe.src = urls[currentIndex];
+            currentIndex = (currentIndex + 1) % urls.length;
+        }
+
+        // Troca as planilhas a cada 2 minutos (120000 milissegundos)
+        switchSheets();
+        setInterval(switchSheets, 120000);
+    </script>
+</body>
+</html>
